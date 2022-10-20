@@ -13,11 +13,11 @@ export class ProductService {
     let dataModifiedAgain: any = [];
     let dataReceived: any = await this.http
       .get(
-        'https://report.yooga.com.br/delivery/relatorio?inverse=true&page=1&data_inicio=2021-08-01&data_fim=2021-12-30&tipo=1&pedido_status=FINISHED',
+        '',
         {
           headers: new HttpHeaders({
             Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjExNjU0LCJpYXQiOjE2NjM4ODExMzZ9.4ZGCysZEql7GrgE4fTBKYKD5LhWEQHMz1PPvY2_rkYs',
+              'Bearer ',
           }),
         }
       )
