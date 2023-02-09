@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
+export class ClientsService {
   data: any;
   constructor(private http: HttpClient) {}
 
@@ -13,8 +12,7 @@ export class ProductService {
     this.data = { inicio: dtInicio, fim: dtFim };
   }
 
-  async getProductData() {
-
+  async getClientData() {
     return this.http
       .get(
         'https://report.yooga.com.br/delivery/relatorio?inverse=true&page=1&data_inicio=' +
@@ -33,12 +31,12 @@ export class ProductService {
   }
 
   async lastPageSaved() {
-    let resultado: any = await this.getProductData();
+    let resultado: any = await this.getClientData();
     //console.log(resultado.data);
     return resultado.lastPage;
   }
 
-  async getProductList(lastPage: any) {
+  async getClientList(lastPage: any) {
     let page = 1;
     let dataModified: any = [];
     let dataModifiedAgain: any = {};
@@ -62,24 +60,23 @@ export class ProductService {
         )
         .toPromise();
 
-      console.log(dataReceived)
+      //console.log(dataReceived)
       dataReceived.data.forEach((el: any) => {
         dataModified.push(el);
       });
-      console.log(dataModified);
+      //console.log(dataModified);
     }
     let dataArray: any = [];
     for (const orders of dataModified) {
-      for (const orderItem of orders.items) {
-        dataModifiedAgain = {
-          name: orderItem.name,
-          qty: orderItem.qty,
-          date: orders.updated_at,
-        };
+      dataModifiedAgain = {
+        name: orders.customer?.name,
+        qty:1,
+        date: orders.updated_at,
+      };
 
-        dataArray.push(dataModifiedAgain);
-      }
+      dataArray.push(dataModifiedAgain);
     }
+
     console.log(dataArray);
     return dataArray;
   }

@@ -1,19 +1,18 @@
-import { Component, Input, OnInit, EventEmitter } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { ClientsService } from '../services/clients.service';
 
 @Component({
-  selector: 'app-products-list',
-  templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.css'],
+  selector: 'app-clients-list',
+  templateUrl: './clients-list.component.html',
+  styleUrls: ['./clients-list.component.css'],
 })
-export class ProductsListComponent implements OnInit {
-  @Input() ButtonInfoReceived: any;
+export class ClientsListComponent implements OnInit {
+  @Input() ButtonClientInfoReceived: any;
   dataByService: any = [];
 
-  constructor(public productService: ProductService) {}
+  constructor(public clientsService: ClientsService) {}
 
   ngOnInit(): void {}
-
   sendData($event: any) {
     let elemCounted: any = [];
 
@@ -29,7 +28,7 @@ export class ProductsListComponent implements OnInit {
     //console.log($event)
     for (const element of $event) {
       // Cada elemento de $event é verificado e reorganizado por countQuantity para depois se jogado num objeto
-      if (this.countQuantity($event)) {
+      if (this.countQuantityClient($event)) {
         let objElements = {
           name: element.name,
           qty: element.qty,
@@ -38,23 +37,23 @@ export class ProductsListComponent implements OnInit {
         elemCounted.push(objElements); // Por fim, é colocado em um array, todos os elementos do objetos já reorganizados
       }
     }
-    //console.log(elemCounted);
-    //console.log(this.dataByService);
+    console.log(elemCounted);
+    console.log(this.dataByService);
   }
 
-  countQuantity($event: any) {
+  countQuantityClient($event: any) {
     const contArray = $event.reduce((acc: any, prop: any) => {
       let elem = acc
         .filter((obj: any) => {
           return obj.name == prop.name;
         })
-        .pop() || { name: prop.name, qty: 0, date: prop.date, pos: prop.pos };
+        .pop() || { name: prop.name, qty: 0, date: prop.date };
       elem.qty += prop.qty;
       acc.push(elem);
 
       return acc;
     }, []);
-
+    console.log(contArray);
     const filterElemRepet = contArray.filter(
       (item: any, first: any, next: any) => {
         return first == next.indexOf(item);
@@ -65,6 +64,7 @@ export class ProductsListComponent implements OnInit {
       // Os elementos do Array são reorganizado novamente
       return b.qty - a.qty;
     });
+
     return this.dataByService;
   }
 }

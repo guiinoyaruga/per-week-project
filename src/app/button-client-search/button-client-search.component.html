@@ -1,0 +1,144 @@
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<div align="center">
+  <nav
+    class="navbar navbar-expand-md navbar-dark"
+    style="background-color: #1b94eb"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Clientes por Semana</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="/products"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Relatório de Produtos por Semana
+            </a>
+            <ul class="dropdown-menu"></ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <form>
+    <div class="container">
+      <label>
+        <span>Início:</span>
+      </label>
+      <input
+        type="date"
+        name="inicio"
+        class="form-control-sm"
+        [(ngModel)]="dtInicio"
+      />
+      <label>
+        <span> Fim:</span>
+      </label>
+      <input
+        type="date"
+        name="fim"
+        class="form-control-sm"
+        [(ngModel)]="dtFim"
+      />
+      <button
+        type="button"
+        (click)="getButtonFunctions()"
+        class="btn btn-dark"
+        id="filter"
+      >
+        Filtrar
+      </button>
+    </div>
+  </form>
+  <br /><br />
+  <div class="align-self-center container">
+    <table id="tableButton">
+      <thead>
+        <tr>
+          <td>
+            <button
+              type="button"
+              class="btn btn-dark"
+              (click)="getClientsData(1)"
+            >
+              Seg
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-dark"
+              (click)="getClientsData(2)"
+            >
+              Ter
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-dark"
+              (click)="getClientsData(3)"
+            >
+              Qua
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-dark"
+              (click)="getClientsData(4)"
+            >
+              Qui
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-dark"
+              (click)="getClientsData(5)"
+            >
+              Sex
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-dark"
+              (click)="getClientsData(6)"
+            >
+              Sab
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-dark"
+              (click)="getClientsData(0)"
+            >
+              Dom
+            </button>
+          </td>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
