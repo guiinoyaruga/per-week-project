@@ -23,7 +23,7 @@ export class ClientsService {
         {
           headers: new HttpHeaders({
             Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjE1ODQ0LCJpYXQiOjE2NjYxMjcwNzJ9.VZTfF9eXBWxD1Ub0Z-gfZK3ygDMgJqd-OFt6svkWly4',
+              '',
           }),
         }
       )
